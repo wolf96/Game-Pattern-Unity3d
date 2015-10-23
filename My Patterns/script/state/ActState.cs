@@ -19,7 +19,7 @@ public class ActState : State
     public override void Start()
     {
         this.chargeTime = 0.0f;
-        this.MaxTime = Person_ctrl.personCtrl.getAct1Time();// actAnimation1;//. 10.0f;//应等于动画时间
+        this.MaxTime = Person_ctrl.personCtrl.getAct1Time();
 
         Person_ctrl.personCtrl.Act();
     }
@@ -29,30 +29,25 @@ public class ActState : State
         input = e.input;
         switch (input)
         { 
-            case "j"://攻击//连击处理？
+            case "j":
                 if (chargeTime > MaxTime - 0.1f)
                 {
-              //      Person_ctrl.SetActState(1);
+
                     Person_ctrl.GetActState(1).Start();
-                   // chargeTime = 0.0f;
-                    //再播放一次
+
                 }
                 break;
-            case "i"://防御
+            case "i":
                 if (chargeTime > MaxTime - 0.8f)
                 {
                     Person_ctrl.SetActState(2);
                     Person_ctrl.GetNowActState().Start();
-                    // chargeTime = 0.0f;
+
         
                 }
                 break;
         }
-
-
-
-        //   Debug.Log(e.input);
-        //     print(e.input);
+
     }
     public override void UpDate()
     {
